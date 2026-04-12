@@ -5,12 +5,10 @@
   Time: 10:38 AM
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
-<head>
-    <title>AquaShop</title>
-</head>
-<body>
+<form action="login" method="post">
+    <input name="username" placeholder="Username"/>
+    <input name="password" type="password" placeholder="Password"/>
+    <button type="submit">Login</button>
 
-</body>
-</html>
+    <p style="color:red">${error}</p>
+</form>
