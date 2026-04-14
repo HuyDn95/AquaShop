@@ -30,4 +30,18 @@ public class AuthServlet extends HttpServlet {
             req.getRequestDispatcher("views/auth/login.jsp").forward(req, resp);
         }
     }
+
+
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws
+            ServletException, IOException {
+        HttpSession session = request.getSession(false);
+        if(session != null && session.getAttribute("user") != null){
+            response.sendRedirect("dashboard");
+            return;
+        }
+
+        request.getRequestDispatcher("views/auth/login.jsp").forward(request, response);
+
+
+    }
 }
