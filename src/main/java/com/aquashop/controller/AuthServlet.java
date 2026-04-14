@@ -24,8 +24,9 @@ public class AuthServlet extends HttpServlet {
             HttpSession session = req.getSession();
             session.setAttribute("user", user);
 
-            resp.sendRedirect("dashboard");
+            resp.sendRedirect(req.getContextPath() + "/dashboard");
         } else {
+
             req.setAttribute("error", "Sai tài khoản");
             req.getRequestDispatcher("views/auth/login.jsp").forward(req, resp);
         }
@@ -36,7 +37,7 @@ public class AuthServlet extends HttpServlet {
             ServletException, IOException {
         HttpSession session = request.getSession(false);
         if(session != null && session.getAttribute("user") != null){
-            response.sendRedirect("dashboard");
+            response.sendRedirect(request.getContextPath() + "/dashboard");
             return;
         }
 
