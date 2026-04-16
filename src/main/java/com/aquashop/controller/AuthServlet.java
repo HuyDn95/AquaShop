@@ -21,10 +21,15 @@ public class AuthServlet extends HttpServlet {
         User user = dao.login(username, password);
 
         if (user != null) {
-            HttpSession session = req.getSession();
-            session.setAttribute("user", user);
+            if ("admin".equals(user.getRole())) {
+                HttpSession session = req.getSession();
+                session.setAttribute("user", user);
 
-            resp.sendRedirect(req.getContextPath() + "/dashboard");
+                resp.sendRedirect(req.getContextPath() + "/dashboard");
+            } else {
+                req.setAttribute("error", "Bạn không có quyền truy cập");
+                req.getRequestDispatcher("views/auth/login.jsp").forward(req, resp);
+            }
         } else {
 
             req.setAttribute("error", "Sai tài khoản");
