@@ -21,9 +21,9 @@
     </div>
 
     <div class="card border-0 shadow-sm rounded-4 overflow-hidden">
-        <div class="card-body p-0">
+        <div class="card-body p-4">
             <div class="table-responsive">
-                <table class="table table-hover align-middle mb-0">
+                <table id="categoryTable" class="table table-hover align-middle mb-0">
                     <thead class="bg-light">
                         <tr>
                             <th class="ps-4 py-3 text-uppercase fs-xs fw-bold text-muted border-0" style="width: 100px;">ID</th>
@@ -62,20 +62,7 @@
                                 </td>
                             </tr>
                         </c:forEach>
-                        <c:if test="${empty listC}">
-                            <tr>
-                                <td colspan="3" class="text-center py-5">
-                                    <div class="py-4">
-                                        <i class="fas fa-folder-open fa-4x text-light mb-3 opacity-50"></i>
-                                        <h5 class="text-muted">Chưa có danh mục nào</h5>
-                                        <p class="text-muted small">Bắt đầu bằng cách thêm danh mục đầu tiên của bạn.</p>
-                                        <a href="category?action=add" class="btn btn-primary btn-sm rounded-pill px-4">
-                                            Thêm ngay
-                                        </a>
-                                    </div>
-                                </td>
-                            </tr>
-                        </c:if>
+
                     </tbody>
                 </table>
             </div>
