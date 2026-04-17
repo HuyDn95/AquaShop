@@ -39,7 +39,7 @@ build/
 .DS_Store
 
 # Database dumps
-*.sql
+#*.sql
 
 # Logs
 *.log
