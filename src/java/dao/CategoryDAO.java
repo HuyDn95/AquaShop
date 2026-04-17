@@ -6,7 +6,7 @@ import model.entity.Category;
 public class CategoryDAO {
     public List<Category> getAllCategory() {
         List<Category> list = new ArrayList<>();
-        String query = "SELECT * FROM categories"; // Đảm bảo DB có bảng này
+        String query = "SELECT * FROM categories"; 
         try (Connection conn = new DBContext().getConnection();
              PreparedStatement ps = conn.prepareStatement(query);
              ResultSet rs = ps.executeQuery()) {
