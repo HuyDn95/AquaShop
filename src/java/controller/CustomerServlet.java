@@ -18,10 +18,8 @@ public class CustomerServlet extends HttpServlet {
         Customer account = (Customer) session.getAttribute("acc");
         
         if (account == null) {
-            // Nếu chưa đăng nhập thì đá về trang login của thằng Huy
             response.sendRedirect("login.jsp");
         } else {
-            // Nếu rồi thì cho sang trang cá nhân (Huy hoặc Minh sẽ vẽ trang này)
             request.getRequestDispatcher("profile.jsp").forward(request, response);
         }
     }
