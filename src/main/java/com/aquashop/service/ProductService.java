@@ -8,6 +8,9 @@ import java.util.List;
 public class ProductService {
     private final ProductDAO productDAO = new ProductDAO();
 
+    public List<Product> getProductByCID(int cid) {
+        return productDAO.getProductByCID(cid);
+    }
     public List<Product> getAllProducts() {
         return productDAO.getAllProduct();
     }
@@ -26,5 +29,9 @@ public class ProductService {
 
     public void deleteProduct(int id) {
         productDAO.deleteProduct(id);
+    }
+
+    public void updateCategoryForProducts(int categoryId, List<Integer> productIds) {
+        productDAO.updateCategoryForProducts(categoryId, productIds);
     }
 }

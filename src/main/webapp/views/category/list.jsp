@@ -42,7 +42,9 @@
                                         <div class="avatar-circle bg-soft-primary text-primary me-3">
                                             <i class="fas fa-folder"></i>
                                         </div>
-                                        <div class="fw-bold text-dark">${c.cname}</div>
+                                        <div class="fw-bold text-dark"><a href="products?cid=${c.cid}" class="text-primary fw-bold">
+                                                ${c.cname}
+                                        </a></div>
                                     </div>
                                 </td>
                                 <td class="pe-4 text-end">

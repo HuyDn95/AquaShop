@@ -7,7 +7,7 @@ import java.sql.SQLException;
 public class DBConnection {
     private static final String url = "jdbc:mysql://localhost:3306/aquashop_db?useSSL=false&characterEncoding=UTF-8&useUnicode=true";
     private static final String username = "root";
-    private static final String password = "123456";
+    private static final String password = "root";
 
     public static Connection getConnection() {
         Connection connection = null;
