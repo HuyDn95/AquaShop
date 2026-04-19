@@ -56,7 +56,17 @@ public class ProductServlet extends HttpServlet {
 
     private void listProducts(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        List<Product> listProducts = productService.getAllProducts();
+
+        String cid = request.getParameter("cid");
+        List<Product> listProducts;
+
+        if (cid != null && !cid.isEmpty()) {
+            int cidInt = Integer.parseInt(cid);
+            listProducts = productService.getProductByCID(cidInt);
+        } else {
+            listProducts = productService.getAllProducts();
+        }
+
         request.setAttribute("listProducts", listProducts);
         request.getRequestDispatcher("/views/product/list.jsp").forward(request, response);
     }

@@ -15,8 +15,7 @@ public class ProductDAO {
     // Hàm lấy tất cả sản phẩm
     public List<Product> getAllProduct() {
         List<Product> list = new ArrayList<>();
-        String query = "SELECT p.*, c.name AS category_name FROM products p " +
-                       "LEFT JOIN categories c ON p.category_id = c.id";
+        String query = "SELECT * FROM products";
 
         try (Connection conn = new DBConnection().getConnection();
              PreparedStatement ps = conn.prepareStatement(query);
@@ -32,8 +31,6 @@ public class ProductDAO {
                         rs.getInt("stock"),
                         rs.getInt("category_id")
                 );
-                Category cat = new Category(rs.getInt("category_id"), rs.getString("category_name"));
-                p.setCategory(cat);
                 list.add(p);
             }
         } catch (Exception e) {
@@ -41,9 +38,26 @@ public class ProductDAO {
         }
         return list;
     }
+    // gán sp vào danh mục
+    public void updateCategoryForProducts(int categoryId, List<Integer> productIds) {
+        String query = "UPDATE products SET category_id = ? WHERE id = ?";
+
+        try (Connection conn = new DBConnection().getConnection();
+             PreparedStatement ps = conn.prepareStatement(query)) {
+
+            for (Integer id : productIds) {
+                ps.setInt(1, categoryId);
+                ps.setInt(2, id);
+                ps.executeUpdate();
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
     // Hàm lọc sản phẩm theo danh mục (ID loại)
-    public List<Product> getProductByCID(String cid) {
+    public List<Product> getProductByCID(int cid) {
         List<Product> list = new ArrayList<>();
         String query = "SELECT p.*, c.name AS category_name FROM products p " +
                        "LEFT JOIN categories c ON p.category_id = c.id " +
@@ -52,7 +66,7 @@ public class ProductDAO {
         try (Connection conn = new DBConnection().getConnection();
              PreparedStatement ps = conn.prepareStatement(query)) {
 
-            ps.setString(1, cid);
+            ps.setString(1, String.valueOf(cid));
             try (ResultSet rs = ps.executeQuery()) {
                 while (rs.next()) {
                     Product p = new Product(
